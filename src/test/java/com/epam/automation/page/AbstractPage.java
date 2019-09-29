@@ -13,4 +13,8 @@ public abstract class AbstractPage {
     AbstractPage(WebDriver driver) {
         this.driver = driver;
     }
+
+    AbstractPage() {
+
+    }
 }

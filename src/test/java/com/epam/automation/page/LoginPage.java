@@ -1,5 +1,6 @@
 package com.epam.automation.page;
 
+import com.epam.automation.driver.DriverSingleton;
 import com.epam.automation.model.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -34,6 +35,11 @@ public class LoginPage extends AbstractPage {
         PageFactory.initElements(this.driver, this);
     }
 
+    public LoginPage() {
+        driver = DriverSingleton.getDriver();
+        PageFactory.initElements(this.driver, this);
+    }
+
     @Override
     public LoginPage openPage() {
         driver.navigate().to(PAGE_URL);
@@ -49,9 +55,24 @@ public class LoginPage extends AbstractPage {
         return new MainPage(driver);
     }
 
+    public MainPage login(String email, String password) {
+        inputEmail.sendKeys(email);
+        inputPassword.sendKeys(password);
+        buttonSubmit.click();
+        return new MainPage();
+    }
+
     public LoginPage passInvalidLoginCredentials(User user) {
         inputEmail.sendKeys(user.getEmail());
         inputPassword.sendKeys(user.getPassword());
+        buttonSubmit.click();
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.presenceOfElementLocated(invalidPasswordErrorMessageLocator));
+        return this;
+    }
+
+    public LoginPage passInvalidLoginCredentials(String email, String password) {
+        inputEmail.sendKeys(email);
+        inputPassword.sendKeys(password);
         buttonSubmit.click();
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.presenceOfElementLocated(invalidPasswordErrorMessageLocator));
         return this;

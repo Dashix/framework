@@ -1,5 +1,6 @@
 package com.epam.automation.page;
 
+import com.epam.automation.driver.DriverSingleton;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -25,6 +26,11 @@ public class MainPage extends AbstractPage {
 
     MainPage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(this.driver, this);
+    }
+
+    public MainPage() {
+        driver = DriverSingleton.getDriver();
         PageFactory.initElements(this.driver, this);
     }
 

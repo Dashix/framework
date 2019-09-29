@@ -6,13 +6,12 @@ import com.epam.automation.service.RandomUserCreator;
 import com.epam.automation.service.UserCreator;
 import org.testng.annotations.Test;
 
+import static com.epam.automation.utils.CommonUtils.PASSWORD_CANNOT_BE_EMPTY_ERROR;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 public class UserAccessTestNegative extends CommonConditions {
-
-    private static final String PASSWORD_CANNOT_BE_EMPTY_ERROR = "Password cannot be empty.";
 
     @Test
     public void oneCannotLoginWithInvalidCredentials() {

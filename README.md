@@ -1,4 +1,4 @@
-This repository is created for the purpose of completion of modules 9 and 10 from Test Automation Mentoring Program related to TA frameworks and design patterns
+This repository is created for the purpose of completion of modules 9, 10 and 11 from Test Automation Mentoring Program related to TA frameworks, design patterns and BDD.
 
 Module 9:
 1) execute these command to run tests with valid parameters (login/password):
@@ -19,3 +19,6 @@ Module 10:
 3) Decorator pattern has been implemented in 'decorator' package as CustomDriverDecorator, a new test CustomDriverTest has been implemented to test this behavior
 
 Refactoring to match S.O.L.I.D. principles (the table is attached as doc file in resources).
+
+Module 11:
+Home task from previous modules has been adopted to make it possible to execute with Cucumber-JVM.
