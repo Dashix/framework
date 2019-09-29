@@ -17,3 +17,5 @@ Module 10:
 1) Singleton pattern has been implemented as DriverSingleton during module 9
 2) Factory method pattern has been implemented at service layer (UserCreator interface and specific users creation)
 3) Decorator pattern has been implemented in 'decorator' package as CustomDriverDecorator, a new test CustomDriverTest has been implemented to test this behavior
+
+Refactoring to match S.O.L.I.D. principles (the table is attached as doc file in resources).
