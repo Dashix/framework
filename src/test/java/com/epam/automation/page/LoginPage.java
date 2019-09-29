@@ -3,10 +3,13 @@ package com.epam.automation.page;
 import com.epam.automation.model.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage extends AbstractPage {
     private final Logger logger = LogManager.getRootLogger();
@@ -20,6 +23,11 @@ public class LoginPage extends AbstractPage {
 
     @FindBy(id = "submit-button")
     private WebElement buttonSubmit;
+
+    @FindBy(xpath = "//p[@class='grid--cell s-input-message js-error-message']")
+    private WebElement invalidPasswordErrorMessage;
+
+    private final By invalidPasswordErrorMessageLocator = By.xpath("//p[@class='grid--cell s-input-message js-error-message']");
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -39,6 +47,18 @@ public class LoginPage extends AbstractPage {
         buttonSubmit.click();
         logger.info("Login performed");
         return new MainPage(driver);
+    }
+
+    public LoginPage passInvalidLoginCredentials(User user) {
+        inputEmail.sendKeys(user.getEmail());
+        inputPassword.sendKeys(user.getPassword());
+        buttonSubmit.click();
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.presenceOfElementLocated(invalidPasswordErrorMessageLocator));
+        return this;
+    }
+
+    public String getPasswordValidationError() {
+        return invalidPasswordErrorMessage.getText();
     }
 
 }
