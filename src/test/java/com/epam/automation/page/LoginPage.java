@@ -13,21 +13,21 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage extends AbstractPage {
     private final Logger logger = LogManager.getRootLogger();
-    private static final String PAGE_URL = "https://stackoverflow.com/users/login";
+    public static final String PAGE_URL = "https://stackoverflow.com/users/login";
 
     @FindBy(id = "email")
-    private WebElement inputEmail;
+    protected WebElement inputEmail;
 
     @FindBy(xpath = "//*[@type='password']")
-    private WebElement inputPassword;
+    protected WebElement inputPassword;
 
     @FindBy(id = "submit-button")
-    private WebElement buttonSubmit;
+    protected WebElement buttonSubmit;
 
     @FindBy(xpath = "//p[@class='grid--cell s-input-message js-error-message']")
-    private WebElement invalidPasswordErrorMessage;
+    protected WebElement invalidPasswordErrorMessage;
 
-    private final By invalidPasswordErrorMessageLocator = By.xpath("//p[@class='grid--cell s-input-message js-error-message']");
+    protected final By invalidPasswordErrorMessageLocator = By.xpath("//p[@class='grid--cell s-input-message js-error-message']");
 
     public LoginPage(WebDriver driver) {
         super(driver);
