@@ -1,6 +1,7 @@
 package com.epam.automation.page;
 
 import com.epam.automation.driver.DriverSingleton;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MainPage extends AbstractPage {
+    private static final Logger logger = Logger.getLogger(MainPage.class);
     private static final String BASE_URL = "https://stackoverflow.com/";
 
     @FindBy(xpath = "//a[@href='/questions/ask']")
@@ -36,27 +38,38 @@ public class MainPage extends AbstractPage {
 
     public AskQuestionPage openAskNewQuestionPage() {
         waitForAskQuestionButtonPresence();
+        highlightElement(buttonAskQuestionLocator);
+        logger.debug("Ask Question button highlighted");
         buttonAskQuestion.click();
+        unHighlightElement(buttonAskQuestionLocator);
+        logger.debug("Ask Question button unhighlighted");
         return new AskQuestionPage(driver);
     }
 
     @Override
     public MainPage openPage() {
+        logger.info("Going to: " + BASE_URL);
         driver.navigate().to(BASE_URL);
         return this;
     }
 
     public String getLoggedInUserName() {
         waitForUserAvatarPicPresence();
+        highlightElement(userAvatarPicLocator);
+        logger.debug("Avatar pic highlighted");
         userAvatarPic.click();
+        unHighlightElement(userAvatarPicLocator);
+        logger.debug("Avatar pic unhighlighted");
         return userName.getText();
     }
 
     private void waitForUserAvatarPicPresence() {
+        logger.warn("Timeout might be extended");
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.presenceOfElementLocated(userAvatarPicLocator));
     }
 
     private void waitForAskQuestionButtonPresence() {
+        logger.warn("Timeout might be extended");
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.presenceOfElementLocated(buttonAskQuestionLocator));
     }
 
