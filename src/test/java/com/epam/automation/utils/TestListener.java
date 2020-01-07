@@ -4,9 +4,10 @@ import com.epam.automation.driver.DriverSingleton;
 import com.google.common.io.Files;
 import io.qameta.allure.Attachment;
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -17,7 +18,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class TestListener implements ITestListener {
-    private Logger logger = Logger.getLogger(TestListener.class);
+    private Logger logger = LoggerFactory.getLogger(TestListener.class);
 
     public void onTestStart(ITestResult iTestResult) {
 

@@ -2,7 +2,6 @@ package com.epam.automation.page;
 
 import com.epam.automation.driver.DriverSingleton;
 import com.epam.automation.model.User;
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,9 +9,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LoginPage extends AbstractPage {
-    private final Logger logger = Logger.getLogger(LoginPage.class);
+    private final Logger logger = LoggerFactory.getLogger(LoginPage.class);
     private static final String PAGE_URL = "https://stackoverflow.com/users/login";
 
     @FindBy(id = "email")

@@ -1,7 +1,6 @@
 package com.epam.automation.page;
 
 import com.epam.automation.driver.DriverSingleton;
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -9,9 +8,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class AskQuestionPage extends AbstractPage {
-    private static final Logger logger = Logger.getLogger(AskQuestionPage.class);
+    private static final Logger logger = LoggerFactory.getLogger(AskQuestionPage.class);
     private static final String BASE_URL = "https://stackoverflow.com/questions/ask";
 
     @FindBy(xpath = "//*[@name='question-type' and @value='code']")
